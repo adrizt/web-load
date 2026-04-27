@@ -1,120 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Loading...</title>
+<meta charset="UTF-8">
+<title>Private Gallery</title>
 
-  <!-- ========== OG PREVIEW ========== -->
-  <meta property="og:title" content="🔥 Watch Live Now">
-  <meta property="og:description" content="Click to watch before it's gone!">
-  <meta property="og:image" content="https://i.imgur.com/tSouY4T.jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://web-load.vercel.app/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      background: #0f0f0f;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
+<!-- OG -->
+<meta property="og:title" content="Latest Gallery Update">
+<meta property="og:description" content="A small private collection preview">
+<meta property="og:image" content="https://i.imgur.com/tSouY4T.jpeg">
+<meta property="og:type" content="website">
 
-    .loader {
-      width: 50px;
-      height: 50px;
-      border: 5px solid #333;
-      border-top: 5px solid #00ffcc;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 25px;
-    }
+<style>
+body {
+  margin:0;
+  font-family:Arial;
+  background:#0f0f0f;
+  color:white;
+}
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+/* LOADING */
+#loading {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#0f0f0f;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
+}
 
-    h2 {
-      margin: 0;
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
+.loader {
+  width:45px;
+  height:45px;
+  border:5px solid #333;
+  border-top:5px solid #00ffcc;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
 
-    .progress-bar {
-      width: 220px;
-      height: 6px;
-      background: #222;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 10px;
-    }
+@keyframes spin {
+  100% {transform:rotate(360deg);}
+}
 
-    .progress {
-      height: 100%;
-      width: 0%;
-      background: #00ffcc;
-      transition: width 0.3s ease;
-    }
+/* ENTER */
+#enterScreen {
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+}
 
-    p {
-      font-size: 13px;
-      opacity: 0.6;
-      margin-top: 8px;
-    }
-  </style>
+button {
+  margin-top:20px;
+  padding:12px 20px;
+  background:#00ffcc;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
+/* GALLERY */
+#galleryPage {
+  display:none;
+  text-align:center;
+}
+
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  padding:10px;
+}
+
+.gallery img {
+  width:100%;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.gallery img:hover {
+  transform:scale(1.05);
+}
+
+/* MODAL PREVIEW */
+#modal {
+  display:none;
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+}
+
+#modal img {
+  max-width:90%;
+  max-height:80%;
+  border-radius:10px;
+}
+
+.note {
+  font-size:12px;
+  opacity:0.5;
+  margin-bottom:20px;
+}
+</style>
 </head>
 
 <body>
 
+<!-- LOADING -->
+<div id="loading">
   <div class="loader"></div>
+  <p style="opacity:0.6;">Loading content...</p>
+</div>
 
-  <h2 id="status">Preparing your content...</h2>
+<!-- ENTER -->
+<div id="enterScreen">
+  <h2>Private Gallery</h2>
+  <p style="opacity:0.7;">Tap below to view the latest collection</p>
+  <button onclick="openGallery()">Enter</button>
+</div>
 
-  <div class="progress-bar">
-    <div class="progress" id="progress"></div>
+<!-- GALLERY -->
+<div id="galleryPage">
+
+  <h2>Private Collection</h2>
+
+  <p style="opacity:0.75; max-width:320px; margin:auto;">
+  A small collection that’s been getting a lot of attention lately.  
+  Some moments are a little more… personal than others.
+  </p>
+
+  <div class="gallery">
+    <!-- GANTI GAMBAR -->
+    <img src="IMAGE1.jpg" onclick="go()">
+    <img src="IMAGE2.jpg" onclick="go()">
+    <img src="IMAGE3.jpg" onclick="go()">
+    <img src="IMAGE4.jpg" onclick="go()">
+    <img src="IMAGE5.jpg" onclick="go()">
+    <img src="IMAGE6.jpg" onclick="go()">
+    <img src="IMAGE7.jpg" onclick="go()">
+    <img src="IMAGE8.jpg" onclick="go()">
+    <img src="IMAGE9.jpg" onclick="go()">
+    <img src="IMAGE10.jpg" onclick="go()">
   </div>
 
-  <p>Please wait a moment</p>
+  <p style="opacity:0.6; font-size:13px;">
+  Not everything is shown here. Full access available below.
+  </p>
 
-  <script>
-    let progress = 0;
-    let progressBar = document.getElementById("progress");
-    let statusText = document.getElementById("status");
+  <button onclick="go()">Open Full Gallery</button>
 
-    let interval = setInterval(() => {
-      progress += Math.random() * 15; // biar keliatan natural
-      if (progress > 100) progress = 100;
+  <p class="note">You may be redirected to an external page</p>
 
-      progressBar.style.width = progress + "%";
+</div>
 
-      // ubah teks biar lebih realistis
-      if (progress < 30) {
-        statusText.innerText = "Preparing your content...";
-      } else if (progress < 60) {
-        statusText.innerText = "Connecting to server...";
-      } else if (progress < 90) {
-        statusText.innerText = "Almost ready...";
-      } else {
-        statusText.innerText = "Launching...";
-      }
+<!-- MODAL -->
+<div id="modal" onclick="closePreview()">
+  <img id="modalImg">
+</div>
 
-      if (progress >= 100) {
-        clearInterval(interval);
+<script>
 
-        // redirect ke smartlink
-        window.location.href = "https://web-load.vercel.app/";
-      }
+// loading
+setTimeout(() => {
+  loading.style.display = "none";
+  enterScreen.style.display = "flex";
+}, 1800);
 
-    }, 300); // smooth speed
-  </script>
+// enter
+function openGallery() {
+  enterScreen.style.display = "none";
+  galleryPage.style.display = "block";
+}
+
+// preview gambar
+function preview(el) {
+  modal.style.display = "flex";
+  modalImg.src = el.src;
+}
+
+function closePreview() {
+  modal.style.display = "none";
+}
+
+// redirect
+function go() {
+  window.location.href = "https://fdeddg.hubss.one/p/nhVNy";
+}
+
+</script>
 
 </body>
 </html>
